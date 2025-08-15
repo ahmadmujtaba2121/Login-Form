@@ -1,5 +1,15 @@
 import { useState } from "react"
 import { useAuthActions } from "../hooks/useAuthActions"
+import {
+    formContainer,
+    formHeading,
+    inputGroupTwoCols,
+    inputGroupStack,
+    inputBase,
+    buttonPrimary,
+    buttonSocial,
+    socialButtonGroup
+} from "../FormStyles"
 
 function Form() {
     const [firstName, setFirstName] = useState("")
@@ -17,57 +27,54 @@ function Form() {
     }
 
     return (
-        <div className="w-full max-w-2xl bg-white/30 backdrop-blur-md border border-white/20 rounded-lg shadow-lg p-10 mx-auto">
-            <div className="text-4xl font-bold tracking-wide text-center mb-10 text-zinc-800">
+        <div className={formContainer}>
+            <div className={formHeading}>
                 <h1>Create an account</h1>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className={inputGroupTwoCols}>
                     <input
                         type="text"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                         placeholder="First Name"
-                        className="p-3 rounded-md bg-white/70 w-full focus:outline-none focus:ring-2 focus:ring-zinc-500 placeholder:text-gray-500 text-zinc-800"
+                        className={inputBase}
                     />
                     <input
                         type="text"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
                         placeholder="Last Name"
-                        className="p-3 rounded-md bg-white/70 w-full focus:outline-none focus:ring-2 focus:ring-zinc-500 placeholder:text-gray-500 text-zinc-800"
+                        className={inputBase}
                     />
                 </div>
 
-                <div className="space-y-4">
+                <div className={inputGroupStack}>
                     <input
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Email"
-                        className="p-3 rounded-md bg-white/70 w-full focus:outline-none focus:ring-2 focus:ring-zinc-500 placeholder:text-gray-500 text-zinc-800"
+                        className={inputBase}
                     />
                     <input
                         type="password"
-                        placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="p-3 rounded-md bg-white/70 w-full focus:outline-none focus:ring-2 focus:ring-zinc-500 placeholder:text-gray-500 text-zinc-800"
+                        placeholder="Password"
+                        className={inputBase}
                     />
                 </div>
 
-                <button
-                    type="submit"
-                    className="bg-indigo-500 hover:bg-indigo-600 text-white w-full p-3 rounded-lg font-medium transition duration-300"
-                >
+                <button type="submit" className={buttonPrimary}>
                     Sign Up
                 </button>
 
-                <div className="grid grid-cols-1 gap-4">
+                <div className={socialButtonGroup}>
                     <button
                         type="button"
-                        className="border border-zinc-500 text-zinc-800 hover:bg-zinc-700 hover:text-white transition-all duration-300 p-3 rounded-lg"
+                        className={buttonSocial}
                         onClick={() => signInWithProvider("google")}
                     >
                         Sign in with Google
@@ -77,5 +84,6 @@ function Form() {
         </div>
     )
 }
+
 
 export default Form
